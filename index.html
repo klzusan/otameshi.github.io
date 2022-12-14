@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+    <title>KITおみくじ2022</title>
+    <meta name="description" content="2023年の運勢をKITおみくじで占いましょう！">
+    
+    <link rel="icon" href="C:\Users\klzu\Desktop\irodori\iro.png" sizes="16x16" type="image/png"> 
+    <link rel="icon" href="C:\Users\klzu\Desktop\irodori\iro.png" sizes="32x32" type="image/png">  
+    <link rel="icon" href="C:\Users\klzu\Desktop\irodori\iro.png" sizes="48x48" type="image/png"> 
+    <link rel="icon" href="C:\Users\klzu\Desktop\irodori\iro.png" sizes="62x62" type="image/png">
+    
+    <style>
+        body{
+            font-size:100%;
+            font-family: “STKaiti”, “ヒラギノ明朝 Pro W3”, “Hiragino Mincho Pro”, serif;
+            margin: 0px;
+        }
+
+        img {
+            width:100%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .inner{
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            
+            width: 85%;
+            margin-right: auto;
+            margin-left: auto;
+            max-width: 500px;
+        }
+
+        .vertical{
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            box-direction : normal;
+            box-orient : vertical;
+
+            -ms-writing-mode: tb-rl;
+            -webkit-writing-mode: vertical-rl;
+            writing-mode: vertical-rl;
+
+            text-orientation: upright;
+        }   
+
+        .vertical div{
+            margin: 0 auto;
+        }
+
+        .feed{
+            transition: opacity 1.2s; /* opacity要素(不透明度)の変更 */
+        }
+
+        .background_base{
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: url(common/img/img1.JPG) center / cover no-repeat;
+            
+        }
+
+        .background_stack{
+            position: relative;
+            width: 100%;
+            min-height: 100vh; 
+            background: url(common/img/img2.JPG) center / cover no-repeat;
+        }
+
+        .heading_title{
+            text-align: center;
+            font-size: 250%;
+            font-weight: bolder;
+            margin: 4% 0;
+        }
+
+        .heading{
+            text-align: center;
+            font-size: 260%;
+            font-weight: bolder;
+            margin: 0;
+        }
+
+        .sub_heading{
+            text-align: center;
+            font-size: 150%;
+            font-weight: bold;
+            margin: 3px;
+        }
+
+        .under{
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+
+        .center{
+            width:70%;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+
+        .init_result{
+            visibility: hidden;
+        }
+
+        .button {
+            background-color:#FF6F6F;
+            border-radius:20px;
+            font-size:120%
+            margin: 10px;
+            padding: 10px;
+            border: 1px none #f7f7f7;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        div.tweet {
+            /* display: none; */
+            text-align: center;
+        }
+        
+        div.tweet button {
+            position: fixed;
+            bottom:0;
+            left:0;
+            
+            border: none;
+            font-size: 120%;
+            background-color: #1DA1F2;
+            padding: 6px 16px;
+            border-radius: 100vh;
+            color: white;
+            cursor: pointer;
+            z-index:100;
+        }
+        
+        i.fa-twitter {
+            font-size: 26px;
+        }
+
+        .inner span {
+            text-shadow: 1px 1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,-1px -1px 0 #fff;
+            color: #00acee;
+        }
+
+        .inner div { 
+            color:#174C4F;
+            font-weight: bold;
+        }
+
+        @media screen and (min-height: 580px) {
+            .heading{
+                margin: 15px 0;
+            }
+
+            .sub_heading{
+                margin: 10px;
+            }
+        }
+
+        @media screen and (min-width: 310px) {
+            .heading_title{
+                font-size: 280%;
+            }
+
+            .heading{
+                font-size: 280%;
+            }
+        }   
+
+        @media screen and (min-width: 481px) {
+            /* 481px以上に適用されるCSS（タブレット用） */
+            .background_base{
+                background: url(common/img/img1_mid.JPG) center / cover no-repeat;
+            }
+            .background_stack{
+                background: url(common/img/img2_mid.JPG) center / cover no-repeat;
+            }
+        }
+
+        @media screen and (min-width: 1026px) {
+            /* 1026px以上に適用されるCSS（PC用） */
+            .background_base{
+                background: url(C:/Users/klzu/Desktop/irodori/img1_lrg.JPG) center / cover no-repeat;
+            }
+            .background_stack{
+                background: url(C:/Users/klzu/Desktop/irodori/rabbit.png) center / cover no-repeat;
+            }
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <div class="background_base">
+        <div class="inner">
+            <img src="C:/Users/klzu/Desktop/irodori/logo.png" ,="" whdth="80%">
+            <div class="heading_title">KITおみくじ</div>
+            <div>あけましておめでとうございます。</div>
+            <div>2023年もirodoriをよろしくお願いします。</div>
+            <div>下のボタンからおみくじを引くことが出来ます。</div>
+            <div>おみくじの結果は是非<span>Twitter</span>でシェアしてね！</div>
+        </div>
+
+
+        <div class="init_result">
+            <div class="feed background_stack" id="result_img" style="opacity: 0; z-index: 10;">
+            </div>
+
+            <div id="result_text" class="feed center" style="opacity: 0; z-index: 20;">
+                <div id="unnsei" class="heading">末吉</div>
+                <div id="flaver" class="sub_heading">小さな問題を後回しにしないことが吉に転ずる</div>
+                <div class="vertical">    
+                    <div id="gakugyou">学業：才能が開花、勉強が分かるわかるぞぉ</div>
+                    <div id="rennai">恋愛：年上または年下、あるいは同い年が狙い目</div>
+                    <div id="usemono">失物：必死に探しても見つからない恐れあり</div>
+                    <div id="kinnunn">金運：大学生活を彩る団体に捧げよ</div>
+                    <div id="sinnkou">親交：愛し愛され良好</div>
+                    <div id="kennkou">健康：大変健康的に過ごせる</div>
+                    <div id="tanni">単位：取り難し　はいふれっくすは寝坊用ではない</div>
+                    <div id="sns">SNS：ちょっとだけバズる</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="buttons" class="feed under" style="z-index: 30;">            
+            <input id="omikuji_btn" class="button" type="button" value="おみくじを引く">    
+        </div>
+
+        <div class="tweet" id="tweet">
+            <button id="twitter-share-button"><i class="fab fa-twitter"></i></button>
+            <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+
+    <script> 
+        let unnseiText = "";
+        let flaverText = "";
+
+        //-----=====表示するテキストとか確率とか変更する場合はここいじってね===================-----
+        // 運勢
+        const unnseiArray = ["大吉", "吉", "末吉", "犬吉", "犬凶", "凶", "凶工繊", "irodori吉"];
+
+        // フレーバーテキスト
+        // [0][]...大吉, [1][]...吉, [2][]...末吉, [3][]...犬吉, [4][]...犬凶, [5][]...凶, [6][]...凶工繊, [7][]...irodori吉
+        const flaverArray = [["虎に翼の如き運 、止めるものは何も無い", "新年に相応しい門出、この一年も安泰", "天はあなたの味方、迷わずお行きなさい", "お行きなさい。 明るい明日が待つ", "今宵の星はあなたに微笑む 目指す先は明るい", "大地が歌い踊る。大いなる祝福があらん", "天翔る龍の如し、向かうところ敵無し", "勇気と未来はもうその手に。走り出すなら今", "何をやっても大丈夫 大船に乗ったつもりで挑戦せよ", "幸福訪れる。笑顔のまま突き進め", "向かうところ敵なし。思い切って踏み出すべし", "やることなすこと全てうまくゆく。挑戦すべし", "心をかたくもてば開運疑いなし", "早起きしなくても三文の徳があるでしょう", "あわてなければ万事うまくゆく"],
+        ["虎のように強い気持ちがより良い運をもたらす", "散歩してみよう。更なる発見があるかも", "コツコツ続けたことが実を結ぶ兆しあり", "学びを深めるとなお良い方向へ向かう", "知らない所へ行けば新しい刺激に出会えるかも", "知らぬが仏。現状維持が最善策", "備えあれば憂いなし。不測の事態を考えよ", "笑顔が1番。今したいことをするとなお良し", "食は世界を救う。美味しいものを食べに行こう", "更に運気をあげるために自分磨きをしよう", "新しい音楽との出会いがより良い運をもたらす", "思わぬところから無くし物が見つかる予感", "ときめく出会いの予感 一日を大事に", "一杯のらーめんが食べれる幸せ 噛み締めよう", "ちょこっとの幸せを見つけるべし", "しあわせはすぐそこに。今が好機", "良い波が押し寄せてきている。乗り遅れるな", "より良い運はより良い身体から。運動が肝", "自販機で1本の贅沢。始めよう新しい計画", "好きなものを再発見。高めようQOL"], 
+        ["虎の威を借る狐になるのは避けるべし", "小石につまずくと悪運に繋がるかも。注意すべし", "課題を出し忘れないのが良運への第一歩", "小さな問題を後回しにしないことが吉に転ずる", "一度立ち止まって考えてみると良い", "一歩一歩コツコツこなせば難しいことはない", "まだまだ寒い。健康には気を付けよう", "いつもと違うことをすれば良好", "友人関係の維持が運気の好転を導く", "明日は明日の風が吹くから大丈夫", "体調に注意すれば大きな困難はない", "不運にあってもあわてなければやがてよくなる　", "目先の得にとびつかなければうまくゆく", "発言に気を付ければ大事には至らない", "友人を大切にすれば助けてもらえる"], 
+        ["穴を掘れば幸福が訪れる", "わんちゃんと出逢う", "わんだふるな一日になる", "努力次第でなんばーわんになれる", "一芸を極めよ", "成功するまで待て", "好きなだけおかわりしてよい", "散歩をすれば新たな発見がある", "鼻を利かせよ", "棒に当たらぬよう注意"], 
+        ["飼い犬に手を噛まれる。身近な裏切りに要注意", "負け犬の遠吠えは亀裂の元。失敗しても潔く", "尾を振る犬は叩かれず。感情を塞ぐべきでない", "尻尾を追い回るな。周りをちゃんと見て行動せよ", "愛犬に牙をむかれる。仲間との意思疎通を怠るな", "犬歯で口を噛みまくる。固いものを食べる時は要注意", "涎をまき散らす。不要な事を口走らぬように", "わんくりっく詐欺に要注意。犬だけに", "どこにも居ぬ。大事な人を離さぬように", "犬も歩けば棒に当たる。多忙で自分を押しつぶさぬよう"], 
+        ["ほうれんそうを等閑にしなければ災難は遠のく", "浮かれるな、地に足つけて生活すべし", "苦難にも耐えよ。いずれ光明が差す", "嘘を吐くと大切なものを失う。誠実に生きよ", "思い詰めすぎるな。吐き出さなければ自らを失う"], 
+        ["京工繊の教授や准教授をもっと敬うべし", "京工繊の施設を悪く言うと全てうまくいかなくなる", "「京工繊万歳」を口癖にしなければ災難が降り注ぐ", "おるたす前のとんびの襲撃に警戒せよ", "登下校時に虹の塔にお辞儀をすると運気が良くなる"], 
+        ["未来はゆたかに彩られている。恐れることなかれ", "表情を明るくもてば開運疑いなし", "これからもirodoriの活動に参加すれば運は開ける", "自信を持てば心は鮮やかに彩られる", "irodoriに入部すれば憂いなし！"]];
+
+        // 学業,恋愛とかの、フレーバーじゃないテキスト
+        // [0]~[3]...良い, [4]~[7]...普通, [8]~[9]...悪い
+        const gakugyouArray = ["成績急上昇の時来たり", "いい波に乗れるでしょう", "安心してそのまま突き進め", "才能が開花、勉強が分かるわかるぞぉ", "順調に進むでしょう", "怠けなければ大丈夫", "成果を信じて勉強すべし", "自信をもって頑張るべし", "怠ると成績に直結する恐れあり", "もっと頑張ってくれよぉぉ"];
+        const rennaiArray   = ["最愛の人と幸せになれる、ただ愛すべし", "1年以内にもて期到来、これが最後", "旧交に良縁あり、連絡すべし", "次に連絡してきた者が運命の人、逃すな", "10秒間目があったものと結ばれる、行け", "年上または年下、あるいは同い年が狙い目", "恋に恋しているだけ、落ち着くべし", "想い続けることだけが幸せとは限らない", "想い人は他の者に揺れ動く、注意すべし", "年内に弾け飛ぶ恐れ、注意すべし"];
+        const usemonoArray  = ["落とし物が瞬時に見つかる", "見つけたかったものが見つかる", "どんな人ともよりを戻せる", "程なくでてくる", "努力すれば見つかる", "遅ければ出ない", "目を背けたくなるものが見つかる", "何か重要なことを忘れている", "必死に探しても見つからない恐れあり", "物を探しているときに怪我をする恐れあり"];
+        const kinnunnArray  = ["給付金をもらえる", "穴ずれの五円玉を得る", "五千北朝鮮ウォン札を拾う", "自販機をあさればいずれ見つかる", "仮想通貨への投資が吉", "さぶすくりぷしょんを見直すべし", "えぬえいちけえの受信料を断るべし", "大学生活を彩る団体に捧げよ", "自販機にうまく入らず", "詐欺に用心すべし"];
+        const sinnkouArray  = ["愛し愛され良好", "一生の付き合いあり大切に", "思いもかけず頼りにされる", "勇気をもって話しかけるべし", "自己を貶さねば円満に行く", "新しいつながり気に留めるべし", "要らぬことを言わねばうまくいく", "詮索しすぎにご用心", "執着はほどほどに", "己の思考をただすべし"];
+        const kennkouArray  = ["大変健康的に過ごせる", "日頃の行いが良ければ大丈夫", "怪我無く過ごせる", "歯だけは問題なく過ごせる", "一日一善すれば健康でいられる", "普段の行いによって健康度が決まる", "早寝早起き徹底すべし", "早寝なら健康、遅寝なら死の恐れあり", "今より三倍太りやすくなる恐れあり", "課題がたまり鬱になる"];
+        const tanniArray    = ["安心せよ　恙無く取れる", "取れる　選択必修の方よろし", "取れる　教授とのこみゅにけえしょんが肝", "取れる　急な課題に注意せよ", "取れはする　おんでまんどはりあたいが吉", "取れはする　課題を出すが吉", "注意せよ　まだどちらにも転ぶ", "取り難し　はいふれっくすは寝坊用ではない", "･･･まだ舞える", "落とす　あまり信じないが吉"];
+        const snsArray      = ["有名人からいいねされる", "ちょっとだけバズる", "良い曲が紹介される", "良い出会いがある", "知らない人からDMが来る", "知らない人にいいねされる", "友達が面白いつぶやきをする", "よくわからないリストに追加される恐れあり", "知り合いにミュートされる恐れあり", "ぱすわあどを忘れてしまう"];
+        
+        // 各運勢と,フレーバーじゃないテキストを決める際の確率の対応
+        // 例えば、[xx, yy, zz]って書いてあったら
+        // xxの確率で良い、yyの確率で普通、zzの確率で悪い
+        // の中からフレーバーじゃないテキストを選択する
+        // (合計で100にならなくてもOK)
+        const probArray =  [[90, 10, 0],    //大吉
+                            [60, 40, 0],    //吉
+                            [55, 30, 15],   //末吉
+                            [60, 30, 10],   //犬吉
+                            [30, 45, 25],   //犬凶
+                            [20, 40, 40],   //凶
+                            [10, 40, 50],   //凶工繊
+                            [90, 10, 0]];   //irodori吉
+        //-----=====表示するテキストとか確率とか変更する場合はここいじってね===================-----//
+
+        //=============見た目に関する関数たち=================
+        const resultText = document.getElementById('result_text');
+        const resultImg = document.getElementById('result_img');
+        const omikujiBtn = document.getElementById('omikuji_btn');
+        const buttons = document.getElementById('buttons');
+        
+        window.onload = function(){
+            omikujiBtn.style.disabled = false;
+
+            resultText.style.opacity = 0;
+            resultImg.style.opacity = 0;
+
+            resultImg.style.zIndex = 10;
+            resultText.style.zIndex = 20;
+            buttons.style.zIndex = 30;
+
+            selectUnnseiText();
+            unnsei.innerHTML = unnseiText;
+
+            selectFlaverText();
+            flaver.innerHTML = flaverText;
+
+            gakugyou.innerHTML  = "学業："+selectOtherText(0);
+            rennai.innerHTML    = "恋愛："+selectOtherText(1);
+            usemono.innerHTML   = "失物："+selectOtherText(2);
+            kinnunn.innerHTML   = "金運："+selectOtherText(3);
+            sinnkou.innerHTML   = "親交："+selectOtherText(4);
+            kennkou.innerHTML   = "健康："+selectOtherText(5);
+            tanni.innerHTML     = "単位："+selectOtherText(6);
+            sns.innerHTML       = "SNS："+selectOtherText(7);
+        }
+
+        const feedOut = ()=>{ //おみくじ結果を透明にする
+            resultText.style.opacity = 0;
+            resultImg.style.opacity = 0;
+            omikujiBtn.style.opacity = 1;
+            omikujiBtn.style.disabled = false;
+
+            buttons.style.zIndex = 30;
+            
+        }
+
+        const feedIn = ()=>{ //おみくじ結果を不透明にする
+            resultText.style.visibility = "visible";
+            resultImg.style.visibility = "visible";
+
+            resultText.style.opacity = 1;
+            resultImg.style.opacity = 1;    
+            omikujiBtn.style.opacity = 0;
+            omikujiBtn.style.disabled = true;
+
+            buttons.style.zIndex = 1;
+        }
+
+        omikujiBtn.addEventListener('click', feedIn); //関数とボタンの対応付け 
+        //resultImg.addEventListener('click', feedOut);
+        //=============見た目に関する関数たち=================//
+
+        //===========テキスト処理に関する関数たち=================
+        function selectUnnseiText(){ //定めた確率によって変数unnseiTextに値をセットする
+            //ランダム値(0~999)を生成して、対応する文字列を代入
+            //出現確率は次の通り
+            //大吉...15%, 吉...30%, 末吉...25%, 犬吉...7.5%
+            //犬凶...7.5%, 凶...7%, 凶工繊...3%, irodori吉...5%%
+
+            let random = Math.floor(Math.random() * 1000);
+
+            if(random < 150){
+                unnseiText = "大吉";     //15%
+            }else if(150 <= random && random < 450){
+                unnseiText = "吉";       //30%
+            }else if(450 <= random && random < 700){
+                unnseiText = "末吉";     //25%
+            }else if(700 <= random && random < 775){
+                unnseiText = "犬吉";     //7.5%
+            }else if(775 <= random && random < 850){
+                unnseiText = "犬凶";     //7.5%
+            }else if(850 <= random && random < 920){
+                unnseiText = "凶";       //7%
+            }else if(920 <= random && random < 950){
+                unnseiText = "凶工繊";   //3%
+            }else if(950 <= random){
+                unnseiText = "irodori吉";//5%
+            }
+
+        }
+
+        function selectFlaverText(){ //変数unnseiTextによってランダムに変数flaverTextに値をセットする
+            if(unnseiText == "大吉"){
+                flaverText = flaverArray[0][Math.floor(Math.random() * flaverArray[0].length)];
+            }else if(unnseiText == "吉"){
+                flaverText = flaverArray[1][Math.floor(Math.random() * flaverArray[1].length)];
+            }else if(unnseiText == "末吉"){
+                flaverText = flaverArray[2][Math.floor(Math.random() * flaverArray[2].length)];
+            }else if(unnseiText == "犬吉"){
+                flaverText = flaverArray[3][Math.floor(Math.random() * flaverArray[3].length)];
+            }else if(unnseiText == "犬凶"){
+                flaverText = flaverArray[4][Math.floor(Math.random() * flaverArray[4].length)];
+            }else if(unnseiText == "凶"){
+                flaverText = flaverArray[5][Math.floor(Math.random() * flaverArray[5].length)];
+            }else if(unnseiText == "凶工繊"){
+                flaverText = flaverArray[6][Math.floor(Math.random() * flaverArray[6].length)];
+            }else if(unnseiText == "irodori吉"){
+                flaverText = flaverArray[7][Math.floor(Math.random() * flaverArray[7].length)];
+            }
+        }
+
+        // textType...0:学業, 1:恋愛, 2:失物, 3:金運, 4:親交, 5:健康, 6:単位, 7:SNS
+        function selectOtherText(textType){//定めた確率によって各フレーバーじゃないテキストについて良い4つ、普通4つ、悪い2つの中から1つ選択して返す
+            let goodProb;   //良いを選択する確率
+            let normalProb; //普通を選択する確率
+            let badProb;    //悪いを選択する確率
+
+            if(unnseiText == "大吉"){
+                goodProb    = probArray[0][0];
+                normalProb  = probArray[0][1];
+                badProb     = probArray[0][2];
+            }else if(unnseiText == "吉"){
+                goodProb    = probArray[1][0];
+                normalProb  = probArray[1][1];
+                badProb     = probArray[1][2];
+            }else if(unnseiText == "末吉"){
+                goodProb    = probArray[2][0];
+                normalProb  = probArray[2][1];
+                badProb     = probArray[2][2];
+            }else if(unnseiText == "犬吉"){
+                goodProb    = probArray[3][0];
+                normalProb  = probArray[3][1];
+                badProb     = probArray[3][2];
+            }else if(unnseiText == "犬凶"){
+                goodProb    = probArray[4][0];
+                normalProb  = probArray[4][1];
+                badProb     = probArray[4][2];
+            }else if(unnseiText == "凶"){
+                goodProb    = probArray[5][0];
+                normalProb  = probArray[5][1];
+                badProb     = probArray[5][2];
+            }else if(unnseiText == "凶工繊"){
+                goodProb    = probArray[6][0];
+                normalProb  = probArray[6][1];
+                badProb     = probArray[6][2];
+            }else if(unnseiText == "irodori吉"){
+                goodProb    = probArray[7][0];
+                normalProb  = probArray[7][1];
+                badProb     = probArray[7][2];
+            }
+            
+            let preTextArray; //該当するフレーバーじゃないテキストを抽出(これ以降で1つの変数で扱えるようにするため)
+            if(textType == 0){
+                preTextArray = gakugyouArray.slice();
+            }else if(textType == 1){
+                preTextArray = rennaiArray.slice();
+            }else if(textType == 2){
+                preTextArray = usemonoArray.slice();
+            }else if(textType == 3){
+                preTextArray = kinnunnArray.slice();
+            }else if(textType == 4){
+                preTextArray = sinnkouArray.slice();
+            }else if(textType == 5){
+                preTextArray = kennkouArray.slice();
+            }else if(textType == 6){
+                preTextArray = tanniArray.slice();
+            }else if(textType == 7){
+                preTextArray = snsArray.slice();
+            }
+            
+            let textArray;
+            let random = Math.floor(Math.random() * (goodProb+normalProb+badProb));
+            
+            if(random < goodProb){
+                textArray = preTextArray.slice(0, 4); //[0]~[3]
+            }else if(goodProb <= random && random < goodProb+normalProb){
+                textArray = preTextArray.slice(4, 8); //[4]~[7]
+            }else if(goodProb+normalProb <= random){
+                textArray = preTextArray.slice(8, 10);//[8]~[9]
+            }
+            
+            return textArray[Math.floor(Math.random() * textArray.length)];
+        }
+        //===========テキスト処理に関する関数たち=================//
+        
+        omikujiBtn.onclick = function() {    
+            /*
+            selectUnnseiText();
+            unnsei.innerHTML = unnseiText;
+
+            selectFlaverText();
+            flaver.innerHTML = flaverText;
+
+            gakugyou.innerHTML  = "学業："+selectOtherText(0);
+            rennai.innerHTML    = "恋愛："+selectOtherText(1);
+            usemono.innerHTML   = "失物："+selectOtherText(2);
+            kinnunn.innerHTML   = "金運："+selectOtherText(3);
+            sinnkou.innerHTML   = "親交："+selectOtherText(4);
+            kennkou.innerHTML   = "健康："+selectOtherText(5);
+            tanni.innerHTML     = "単位："+selectOtherText(6);
+            sns.innerHTML       = "SNS："+selectOtherText(7);
+            */
+        }
+
+        document.getElementById("twitter-share-button").onclick = function() {
+            // 出力結果を取得
+            let text = "おみくじの結果は"+unnseiText+"でした！みんなもおみくじを引いて2022年を迎えよう";
+            if(omikujiBtn.style.disabled == false){//まだおみくじボタンを押されていなかったら
+                text = "KITおみくじを引いて2022年を迎えよう";
+            }
+
+            // オプションパラメータを設定
+            let hashtags = "KITおみくじ2022";
+            let url = encodeURIComponent(location.href);  // location.hrefは今いるURL
+
+            // URLを生成して遷移
+            window.open("https://twitter.com/share?text=" + text + "&hashtags=" + hashtags + "&url=" + url);
+            
+        }
+    </script>
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="https://platform.twitter.com/widgets/widget_iframe.644279d1635fd969e87af94a98bd232b.html?origin=https%3A%2F%2Fhagelation.sakura.ne.jp" title="Twitter settings iframe" style="display: none;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe"></iframe></body></html>
